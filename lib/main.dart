@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'database/mongo.dart';
+// import 'database/mongo.dart';
 
 void main() {
-  initDatabase();
+  // initDatabase();
   runApp(const MyApp());
 }
 
