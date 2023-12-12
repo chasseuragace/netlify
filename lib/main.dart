@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:html' as html;
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,11 +24,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late String currentUrl;
   late Map<String, String> queryParams;
+  late String platform;
 
   @override
   void initState() {
     super.initState();
     parseUrl();
+    detectPlatform();
   }
 
   void parseUrl() {
@@ -38,6 +39,37 @@ class _MyHomePageState extends State<MyHomePage> {
       currentUrl = currentUri.toString();
       queryParams = currentUri.queryParameters;
     });
+  }
+
+  void detectPlatform() {
+    final userAgent = html.window.navigator.userAgent.toLowerCase();
+
+    if (userAgent.contains('android')) {
+      setState(() {
+        platform = 'Android';
+      });
+    } else if (userAgent.contains('iphone') || userAgent.contains('ipad')) {
+      setState(() {
+        platform = 'iOS';
+      });
+    } else if (userAgent.contains('win')) {
+      setState(() {
+        platform = 'Windows';
+      });
+    } else if (userAgent.contains('macintosh') ||
+        userAgent.contains('mac os')) {
+      setState(() {
+        platform = 'macOS';
+      });
+    } else if (userAgent.contains('linux')) {
+      setState(() {
+        platform = 'Linux';
+      });
+    } else {
+      setState(() {
+        platform = 'Unknown Platform';
+      });
+    }
   }
 
   @override
@@ -50,6 +82,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              'Platform:',
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              platform,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 20),
             Text(
               'Current URL:',
               style: TextStyle(fontSize: 18),
