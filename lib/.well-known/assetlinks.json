@@ -1,0 +1,12 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.kaha_hits.kaha",
+        "sha256_cert_fingerprints": [
+          "1F:E2:30:E1:7D:32:6F:68:FE:06:67:E0:78:A0:64:29:E1:1F:5F:1B:BD:F1:28:CB:BD:B6:EE:93:78:F3:8E:24"
+        ]
+      }
+    }
+  ] 

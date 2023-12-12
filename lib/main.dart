@@ -72,6 +72,30 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void openAppStoreOrWebsite() {
+    String url;
+
+    switch (platform) {
+      case 'Android':
+        url =
+            'https://play.google.com/store/apps/details?id=com.google.android.apps.maps';
+        break;
+      case 'iOS':
+        url = 'https://apps.apple.com/us/app/google-maps/id585027354';
+        break;
+      case 'Windows':
+      case 'macOS':
+      case 'Linux':
+        url = 'https://kaha.com.np';
+        break;
+      default:
+        url = 'https://kaha.com.np';
+        break;
+    }
+
+    html.window.location.href = url;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,31 +106,32 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Platform:',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              platform,
-              style: TextStyle(fontSize: 16),
+            // Kaha Logo
+            Image.asset(
+              'assets/kaha_logo.png', // Replace with your actual image path
+              width: 150,
+              height: 150,
             ),
             SizedBox(height: 20),
-            Text(
-              'Current URL:',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              currentUrl,
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Query Parameters:',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              jsonEncode(queryParams),
-              style: TextStyle(fontSize: 16),
+            // Beautifully decorated card widget as a button
+            InkWell(
+              onTap: openAppStoreOrWebsite,
+              child: Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    'Open App Store or Website',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
