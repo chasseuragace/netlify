@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(MyApp());
 }
 
@@ -10,8 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {"/": (_) => MyHomePage(), '/resolve': (_) => MyHomePage()},
       title: 'URL Parser',
-      home: MyHomePage(),
+      // home: MyHomePage(),
     );
   }
 }
